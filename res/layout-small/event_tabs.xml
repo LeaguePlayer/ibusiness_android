@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:android1="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android1:layout_width="match_parent"
+        android1:layout_height="wrap_content"
+        android1:background="@drawable/bg_title_event" >
+
+        <TextView
+            android1:id="@+id/title_event"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:layout_gravity="center_vertical"
+            android1:layout_marginLeft="10dp"
+            android1:ellipsize="marquee"
+            android1:lines="1"
+            android1:text="TextView"
+            android1:textColor="@color/white"
+            android1:textSize="12sp" />
+
+    </LinearLayout>
+
+    <TabHost
+        android1:id="@android:id/tabhost"
+        android1:layout_width="match_parent"
+        android1:layout_height="match_parent"
+        android1:layout_weight="10" >
+
+        <LinearLayout
+            android1:layout_width="match_parent"
+            android1:layout_height="match_parent"
+            android1:orientation="vertical" >
+
+            <TabWidget
+                android1:id="@android:id/tabs"
+                android1:layout_width="match_parent"
+                android1:layout_height="wrap_content" />
+
+            <FrameLayout
+                android1:id="@android:id/tabcontent"
+                android1:layout_width="match_parent"
+                android1:layout_height="match_parent" >
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+        </LinearLayout>
+    </TabHost>
+
+    <RelativeLayout
+        android1:id="@+id/plaha_reg"
+        android1:layout_width="fill_parent"
+        android1:layout_height="wrap_content"
+        android1:background="@drawable/reg_plaha_gradient" >
+
+        <TextView
+            android1:id="@+id/interes"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:layout_alignParentLeft="true"
+            android1:layout_centerHorizontal="true"
+            android1:layout_centerVertical="true"
+            android1:layout_marginLeft="20dp"
+            android1:text="Заинтересовало событие?"
+            android1:textAppearance="@null"
+            android1:textColor="#DC0314"
+            android1:textSize="14sp" />
+
+        <Button
+            android1:id="@+id/goreg"
+            style="@null"
+            android1:layout_width="wrap_content"
+            android1:layout_height="wrap_content"
+            android1:layout_alignParentRight="true"
+            android1:layout_centerVertical="true"
+            android1:background="@drawable/selector_buton_reg"
+            android1:paddingBottom="5dp"
+            android1:paddingTop="5dp"
+            android1:text="Регистрация"
+            android1:textColor="@android:color/white"
+            android1:textSize="15sp" />
+    </RelativeLayout>
+
+</LinearLayout>

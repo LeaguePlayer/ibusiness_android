@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rekitem"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="20dp"
+    android:background="@drawable/event_button" >
+
+	<TextView android:id="@+id/date" style="@style/textReportSpeaker"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_marginRight="5dp" android:maxWidth="90dp" android:text="TextView"
+		android:textAppearance="@null" />
+
+	<RelativeLayout
+	    android:id="@+id/rek_text"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginRight="12dp"
+	    android:layout_toRightOf="@+id/date" >
+
+	    <TextView
+	        android:id="@+id/rek_title"
+	        style="@style/WhiteShadow"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dp"
+	        android:text="TextView"
+	        android:textAppearance="@style/fioSpeaker" />
+
+	    <TextView
+	        android:id="@+id/rek_desc"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/rek_title"
+	        android:layout_below="@+id/rek_title"
+	        android:layout_marginTop="5dp"
+	        android:text="TextView"
+	        android:textAppearance="@null"
+	        android:textSize="11sp" />
+
+	</RelativeLayout>
+
+	<ImageView android:id="@+id/imageView1" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_alignParentRight="true"
+		android:layout_centerVertical="true" android:src="@drawable/arrow" />
+
+</RelativeLayout>

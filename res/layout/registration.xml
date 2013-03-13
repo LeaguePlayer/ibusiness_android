@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/regform"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    android:weightSum="1.0" >
+
+    <LinearLayout
+        android:id="@+id/topline"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="@drawable/border_reg"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/t1"
+            style="@style/WhiteShadow1px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_weight="0.2"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Заинтересовало мероприятие:"
+            android:textAppearance="@style/BlackShadow"
+            android:textColor="#dc0314"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/event_title"
+            style="@style/WhiteShadow1px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="Очень длинное длинное название?"
+            android:textAppearance="@style/BlackShadow"
+            android:textColor="#dc0314"
+            android:textSize="22sp" />
+
+        <TextView
+            android:id="@+id/event_price"
+            style="@style/WhiteShadow1px"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:gravity="center_horizontal|center_vertical"
+            android:text="15 000 руб."
+            android:textAppearance="@style/BlackShadow"
+            android:textColor="#dc0314"
+            android:textSize="22sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/form"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_weight="0.3"
+        android:background="@drawable/event_button"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/name"
+            style="@null"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_weight="0.3"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:text="Как вас зовут?"
+            android:textAppearance="@null"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:ems="10"
+            android:inputType="phone"
+            android:text="Номер телефона"
+            android:textAppearance="@null"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/or"
+            style="@style/WhiteShadow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="7dp"
+            android:layout_weight="0.1"
+            android:gravity="center_vertical"
+            android:text="или"
+            android:textAppearance="@style/WhiteShadow"
+            android:textColor="#dc0314"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.3"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:text="email"
+            android:textAppearance="@null"
+            android:textSize="15dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.35" >
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:scaleType="center"
+            android:src="@drawable/gray_check" />
+
+        <TextView
+            android:id="@+id/infotext"
+            android:layout_width="208dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:text="@string/inforeg"
+            android:textAppearance="@null"
+            android:textColor="#505050"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginRight="5dp"
+        android:layout_weight="0.05" >
+
+        <Button
+            android:id="@+id/go"
+            style="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="3"
+            android:background="@drawable/selector_buton_reg"
+            android:text="Пойду"
+            android:textAppearance="@null"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/cancel"
+            style="@null"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:background="@drawable/event_button_selector"
+            android:text="Не заинтересовало"
+            android:textAppearance="@null"
+            android:textColor="#DC0314"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_reg"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+</LinearLayout>

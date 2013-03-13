@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<LinearLayout android:layout_width="match_parent"
+		android:layout_height="wrap_content" >
+
+		<Button android:id="@+id/but1" style="@null"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
+			android:layout_weight="1" android:background="@drawable/event_tabs_bg"
+			android:text="@string/food" android:textAppearance="@null"
+			android:textColor="@color/black" android:textSize="12sp" />
+
+		<Button android:id="@+id/but3" style="@null"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
+			android:layout_weight="1" android:background="@drawable/event_tabs_bg"
+			android:text="@string/bankomat" android:textAppearance="@null"
+			android:textColor="@color/black" android:textSize="12sp" />
+		
+		<Button android:id="@+id/but2" style="@null"
+			android:layout_width="match_parent" android:layout_height="wrap_content"
+			android:layout_weight="1" android:background="@drawable/event_tabs_bg"
+			android:text="@string/hotels" android:textAppearance="@null"
+			android:textColor="@color/black" android:textSize="12sp" />
+
+	</LinearLayout>
+
+	<LinearLayout android:layout_width="match_parent"
+		android:layout_height="match_parent" android:orientation="vertical">
+
+		<ru.yandex.yandexmapkit.MapView
+			android:id="@+id/map" android:layout_width="match_parent"
+			android:layout_height="match_parent" android:apiKey="1234567890" />
+
+
+
+	</LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="wrap_content"
+	android:background="@drawable/event_button">
+
+	<RelativeLayout android:id="@+id/image_box"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_marginRight="10dp">
+
+		<ImageView android:id="@+id/black_plaha"
+			android:layout_width="57dp" android:layout_height="57dp"
+			android:layout_centerHorizontal="true" android:layout_centerVertical="true"
+			android:src="@drawable/black_plaha" />
+
+		<ImageView
+		    android:id="@+id/image_speaker"
+		    android:layout_width="55dp"
+		    android:layout_height="55dp"
+		    android:layout_centerHorizontal="true"
+		    android:layout_centerVertical="true"
+		    android:scaleType="centerCrop"
+		    android:src="@drawable/ic_launcher" />
+
+	</RelativeLayout>
+
+	<RelativeLayout android:id="@+id/test"
+		android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_toRightOf="@id/image_box">
+
+		<TextView
+		    android:id="@+id/fio_speaker"
+		    style="@style/WhiteShadow"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:text="TextView"
+		    android:textAppearance="@style/fioSpeaker" />
+
+		<TextView
+		    android:id="@+id/desc_speaker"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_below="@id/fio_speaker"
+		    android:paddingRight="15dp"
+		    android:text="TextView"
+		    android:textAppearance="@style/textReportSpeaker" />
+
+	</RelativeLayout>
+
+	<ImageView android:id="@+id/arrow" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" android:layout_alignParentRight="true"
+		android:layout_centerVertical="true" android:src="@drawable/arrow" />
+
+</RelativeLayout>

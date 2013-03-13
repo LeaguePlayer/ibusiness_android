@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="app_name">iBusiness</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">iБизнес</string>
+    <string name="tab1">Актуально</string>
+    <string name="tab2">Новости</string>
+    <string name="tab3">Кабинет</string>
+    <string name="banner">Баннер</string>
+    <string name="food">Еда</string>
+    <string name="hotels">Гостиницы</string>
+    <string name="bankomat">Банкоматы</string>
+    <string name="inforeg">После регистрации, вы получите уведомление на свой телефон или по электронной почте</string>
+
+</resources>

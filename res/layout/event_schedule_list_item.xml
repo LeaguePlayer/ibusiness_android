@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent" android:layout_height="wrap_content"
+	android:background="@color/white">
+
+	<RelativeLayout
+	    android:id="@+id/rel_text"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:minHeight="55dp"
+	    android:paddingBottom="5dp"
+	    android:paddingTop="5dp" >
+
+		<RelativeLayout
+		    android:id="@+id/rel_item"
+		    android:layout_width="95dp"
+		    android:layout_height="wrap_content"
+		    android:layout_centerVertical="true" >
+
+			<RelativeLayout
+			    android:layout_width="match_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_centerVertical="true" >
+
+			    <TextView
+			        android:id="@+id/item_time"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_centerHorizontal="true"
+			        android:text="11:30"
+			        android:textAppearance="@null"
+			        android:textColorHint="@color/black"
+			        android:textSize="12sp" />
+
+			    <ImageView
+			        android:id="@+id/coffee"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_below="@+id/item_time"
+			        android:layout_centerHorizontal="true"
+			        android:src="@drawable/cofee"
+			        android:visibility="invisible" />
+
+			</RelativeLayout>
+
+		</RelativeLayout>
+
+		<RelativeLayout
+		    android:id="@+id/rel_sched_text"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:layout_centerVertical="true"
+		    android:layout_marginRight="5dp"
+		    android:layout_toRightOf="@+id/rel_item"
+		    android:paddingLeft="10dp"
+		    android:paddingRight="10dp" >
+
+			<TextView
+			    android:id="@+id/s_title"
+			    style="@style/WhiteShadow1px"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:text="TextView"
+			    android:textAppearance="@null"
+			    android:textColor="#dc0314"
+			    android:textSize="15sp" />
+
+			<TextView
+			    android:id="@+id/s_desc"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_below="@+id/s_title"
+			    android:text="TextView"
+			    android:textAppearance="@null"
+			    android:textColor="#828282"
+			    android:textSize="11sp" />
+
+		</RelativeLayout>
+	</RelativeLayout>
+
+	<RelativeLayout android:layout_width="match_parent"
+		android:layout_height="1dp" android:background="#DFDFDF"
+		android:layout_below="@+id/rel_text" />
+
+
+
+</RelativeLayout>
