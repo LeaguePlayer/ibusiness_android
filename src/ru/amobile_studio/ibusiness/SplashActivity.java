@@ -1,9 +1,15 @@
 package ru.amobile_studio.ibusiness;
 
+import static ru.amobile_studio.ibusiness.gsm.CommonUtilities.SENDER_ID;
+import static ru.amobile_studio.ibusiness.gsm.CommonUtilities.SERVER_URL;
+
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
 
+import com.google.android.gcm.GCMRegistrar;
+
+import ru.amobile_studio.ibusiness.gsm.ServerUtilities;
 import ru.amobile_studio.ibusiness.managers.EventManager;
 import ru.amobile_studio.ibusiness.managers.PartnersManager;
 import ru.amobile_studio.ibusiness.managers.ScheduleManager;
@@ -16,6 +22,7 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -40,12 +47,52 @@ public class SplashActivity extends Activity {
 	final int ASYNC_OK = 1;
 	private ImageView iv;
 
-	public Handler h; //Для ассинхронной загрузки
+	private AsyncTask<Void, Void, Void> mRegisterTask;
+
+	public Handler h;
 	public BroadcastReceiver br = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        Log.d(LOG_TAG, "-------------GCM------------");
+        
+        //add for GCM android
+        checkNotNull(SERVER_URL, "SERVER_URL");
+        checkNotNull(SENDER_ID, "SENDER_ID");
+        GCMRegistrar.checkDevice(this);
+        GCMRegistrar.checkManifest(this);
+        
+        final String regId = GCMRegistrar.getRegistrationId(this);
+        Log.d(LOG_TAG, "reg 1 - " + regId);
+        if (regId.equals("")) {
+        	GCMRegistrar.register(this, SENDER_ID);
+        }else{
+        	if (GCMRegistrar.isRegisteredOnServer(this)) {
+        		
+        	}else{
+        		final Context context = this;
+            	mRegisterTask = new AsyncTask<Void, Void, Void>() {
+
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        boolean registered = ServerUtilities.register(context, regId);
+                        if (!registered) {
+                            GCMRegistrar.unregister(context);
+                        }
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        mRegisterTask = null;
+                    }
+                };
+                mRegisterTask.execute(null, null, null);
+        	}
+        }
+        //-----
         
         setContentView(R.layout.main);
         
@@ -64,7 +111,7 @@ public class SplashActivity extends Activity {
     		}
     	};
         
-        //Создаем ресивер для проверки подключени к сети
+        //пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
         br = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
@@ -107,9 +154,7 @@ public class SplashActivity extends Activity {
 				} else { //Net undetected
 					PartnersManager pm = new PartnersManager(getApplicationContext());
 					if(pm.isEmpty()){
-						Toast.makeText(getApplicationContext(), 
-								"Необходимо подключение к сети для синхронизации данных", 
-								Toast.LENGTH_LONG).show();
+						Toast.makeText(getApplicationContext(), getString(R.string.need_net), Toast.LENGTH_LONG).show();
 					}else{
 						Thread tWait = new Thread(new Runnable() {
 							
@@ -198,6 +243,12 @@ public class SplashActivity extends Activity {
 	   pm.startSync();
 	   Log.d(LOG_TAG, "empty" + pm.isEmpty());
 	   return pm.isEmpty() ? false : true;
+   }
+   
+   private void checkNotNull(Object reference, String name) {
+       if (reference == null) {
+           throw new NullPointerException();
+       }
    }
     
    public void showBanner(){

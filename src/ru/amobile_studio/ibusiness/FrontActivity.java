@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -29,6 +30,13 @@ public class FrontActivity extends TabActivity {
         //il.clearDir();
         //this.deleteDatabase(DBHelper.DBNAME);
 	    
+	    //After delete
+//	    Log.d(SplashActivity.LOG_TAG, "class - " + Review.class);
+//	    Intent in = new Intent(this, "ru.amobile_studio.ibusiness.Review");
+//	    startActivity(in);
+//	    
+//	    return;
+	    
 	    tf = Typeface.createFromAsset(getAssets(),"fonts/PFDinDisplayPro-Bold.ttf");
 	    
 	    DisplayMetrics metrics = new DisplayMetrics();
@@ -48,18 +56,18 @@ public class FrontActivity extends TabActivity {
 	    
 	    //tabWidjet.getLayoutParams().height = (int) (66 * metrics.scaledDensity);
 	    tabHost.addTab(createTab(EventsActivity.class, 
-                "topEvents", "События", R.drawable.events));
+                "topEvents", getString(R.string.events_tab), R.drawable.events));
 	    tabHost.addTab(createTab(NewsActivity.class, 
-                "topNews", "Новости", R.drawable.news));
+                "topNews", getString(R.string.news_tab), R.drawable.news));
 	    tabHost.addTab(createTab(PoleznoeActivity.class, 
-                "topCab", "Полезное", R.drawable.usefull));
+                "topCab", getString(R.string.polez_tab), R.drawable.usefull));
 	    
 	    int countTabs = tabWidget.getChildCount();
 	    
 	    int leftRightMargin = (int) (20*density);
 	    int middle = (int) (10*density);
 	    
-	    //оступы вкладок
+	    //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	    for(int i = 0; i < countTabs; i++){
 	    	View currentView = tabWidget.getChildAt(i);
 	    	LinearLayout.LayoutParams currentLayout = (LinearLayout.LayoutParams) currentView.getLayoutParams();

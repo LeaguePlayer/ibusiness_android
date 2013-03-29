@@ -2,7 +2,6 @@ package ru.amobile_studio.ibusiness.adapters;
 
 import java.util.List;
 
-import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;

@@ -96,7 +96,7 @@ public class EventsActivity extends Activity implements OnClickListener {
 	    		current_butt++;
 	    	}
 	    }
-	    //рекомендованные
+	    //СЂРµРєРѕРјРµРЅРґРѕРІР°РЅРЅС‹Рµ
 	    
 	    //View rek =  lf.inflate(R.layout.rekomend, linLayout, true);
 	    View rek =  findViewById(R.id.ll_but4);
@@ -104,7 +104,7 @@ public class EventsActivity extends Activity implements OnClickListener {
 	    rl.setOnClickListener(this);
 	}
 	
-	//Устанавливаем активное лого в первую кнопку
+	//РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р°РєС‚РёРІРЅРѕРµ Р»РѕРіРѕ РІ РїРµСЂРІСѓСЋ РєРЅРѕРїРєСѓ
 	private void setEventInfo(Event e, View event){
 		TextView tv = null;
 		if(current_butt == 1){

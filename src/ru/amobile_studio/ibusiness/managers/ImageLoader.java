@@ -9,12 +9,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 import ru.amobile_studio.ibusiness.SplashActivity;
-
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
 

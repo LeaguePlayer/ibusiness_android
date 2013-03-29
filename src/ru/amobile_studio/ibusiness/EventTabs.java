@@ -1,5 +1,8 @@
 package ru.amobile_studio.ibusiness;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
@@ -8,8 +11,11 @@ import ru.amobile_studio.ibusiness.adapters.PagerAdapter;
 import ru.amobile_studio.ibusiness.managers.EventManager;
 import ru.amobile_studio.ibusiness.managers.EventManager.Event;
 import ru.amobile_studio.ibusiness.speakers.SpeakersList;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -23,6 +29,7 @@ import android.widget.RelativeLayout;
 import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class EventTabs extends FragmentActivity implements 
 						TabHost.OnTabChangeListener, ViewPager.OnPageChangeListener, OnClickListener {
@@ -31,6 +38,7 @@ public class EventTabs extends FragmentActivity implements
 	private HashMap<String, TabInfo> mapTabInfo = new HashMap<String, EventTabs.TabInfo>();
 	private PagerAdapter mPagerAdapter;
 	private Button goreg;
+	private Boolean showReview = false;
 	
 	private class TabInfo {
 		private String tag;
@@ -77,11 +85,24 @@ public class EventTabs extends FragmentActivity implements
     			new String[]{"" + getIntent().getIntExtra("event_id", 0)}, null).get(0);
     	((TextView) findViewById(R.id.title_event)).setTypeface(tf);
     	((TextView) findViewById(R.id.title_event)).setText(event.title);
-    	/*if(event.title.length() > 60){
-    		((TextView) findViewById(R.id.title_event)).setText(event.title.substring(0, 60) + "...");
-    	}else{
+    	
+    	//Проверяем дату мероприяти для вывода кнопки Оценить
+    	try {
+    		SimpleDateFormat inFormat = new SimpleDateFormat("yyyy-MM-dd H:m:s");
+    		//SimpleDateFormat outFormat = new SimpleDateFormat("dd.mm.yyyy");
     		
-    	}*/
+			Date start = inFormat.parse(event.date_start);
+			Date today = new Date();
+			if(start.compareTo(today) < 0 || start.compareTo(today) == 0){
+				showReview = true;
+			}else if(start.compareTo(today) > 0){
+				showReview = false;
+			}
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     	this.initialiseTabHost(savedInstanceState);
     	
@@ -92,6 +113,11 @@ public class EventTabs extends FragmentActivity implements
 		goreg = (Button) findViewById(R.id.goreg);
 		goreg.setTypeface(tf);
 		goreg.setOnClickListener(this);
+		
+		if(showReview){
+    		goreg.setText(R.string.review_submit);
+    		interes.setText(R.string.ponrav);
+    	}
 		
 		// Intialise ViewPager
 		this.intialiseViewPager();
@@ -129,7 +155,7 @@ public class EventTabs extends FragmentActivity implements
         View tab1 = LayoutInflater.from(mTabHost.getContext()).inflate(R.layout.event_tab, null);
         TextView tv = (TextView) tab1.findViewById(R.id.title_tab);
         tv.setTypeface(tf);
-        tv.setText("����");
+        tv.setText(getString(R.string.info_tab));
         AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("Tab1").setIndicator(tab1), 
         		( tabInfo = new TabInfo("Tab1", EventFragment.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
@@ -138,7 +164,7 @@ public class EventTabs extends FragmentActivity implements
         View tab2 = LayoutInflater.from(mTabHost.getContext()).inflate(R.layout.event_tab, null);
         tv = (TextView) tab2.findViewById(R.id.title_tab);
         tv.setTypeface(tf);
-        tv.setText("�������");
+        tv.setText(getString(R.string.speaker_tab));
         AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("Tab2").setIndicator(tab2), 
         		( tabInfo = new TabInfo("Tab2", SpeakersList.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
@@ -147,7 +173,7 @@ public class EventTabs extends FragmentActivity implements
         View tab3 = LayoutInflater.from(mTabHost.getContext()).inflate(R.layout.event_tab, null);
         tv = (TextView) tab3.findViewById(R.id.title_tab);
         tv.setTypeface(tf);
-        tv.setText("����������");
+        tv.setText(getString(R.string.schedule_tab));
         AddTab(this, this.mTabHost, this.mTabHost.newTabSpec("Tab3").setIndicator(tab3), 
         		( tabInfo = new TabInfo("Tab3", StickyHeadersSchedule.class, args)));
         this.mapTabInfo.put(tabInfo.tag, tabInfo);
@@ -196,10 +222,34 @@ public class EventTabs extends FragmentActivity implements
 	@Override
 	public void onClick(View v) {
 		// TODO Auto-generated method stub
-		if(v.getId() == R.id.goreg){
+		if(!showReview && v.getId() == R.id.goreg){
 			Intent intent = new Intent(this, GoRegActivity.class);
 			intent.putExtras(getIntent());
 			startActivity(intent);
+		}else if(showReview && v.getId() == R.id.goreg){
+			SharedPreferences sPref = getPreferences(MODE_PRIVATE);
+		    Boolean vote = sPref.getBoolean("vote", false);
+		    if(vote){//Уже голосовал
+		    	getDialog("", "Вы уже голосовали!");
+		    }else{//Не голосовал
+		    	Intent intent = new Intent(this, Review.class);
+				intent.putExtras(getIntent());
+				startActivity(intent);
+		    }
+			
 		}
+	}
+	
+	private AlertDialog getDialog(String title, String text) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(text)
+		   .setTitle(title)
+	       .setCancelable(false)
+	       .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+	           public void onClick(DialogInterface dialog, int id) {
+	                //do things
+	           }
+	       });
+		return builder.create();
 	}
 }

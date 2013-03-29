@@ -74,7 +74,7 @@ public class NewsActivity extends ListActivity {
 		super.onCreate(arg0);
 		setContentView(R.layout.news_list);
 		
-		pg = ProgressDialog.show(this, null, "Загрузка...", true);
+		pg = ProgressDialog.show(this, null, getString(R.string.progress_text), true);
 		
 		mPullRefreshListView = (PullToRefreshListView) findViewById(R.id.pull_refresh_list);
 		t.start();
@@ -157,7 +157,7 @@ public class NewsActivity extends ListActivity {
 		try {
 			String r = jm.getJsonResult();
 			if(r.equals("")){
-				News n = new News("Нет подключения", "");
+				News n = new News("пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ", "");
 				ArrayList<News> one = new ArrayList<News>(1);
 				one.add(n);
 				return one;

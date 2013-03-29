@@ -60,8 +60,8 @@ import android.widget.TextView;
 
 public class GoRegActivity extends Activity implements OnFocusChangeListener, OnClickListener {
 
-	private static final String NAME_TEXT = "Как вас зовут?";
-	private static final String PHONE_TEXT = "Номер телефона";
+	private static final String NAME_TEXT = "РљР°Рє РІР°СЃ Р·РѕРІСѓС‚?";
+	private static final String PHONE_TEXT = "РќРѕРјРµСЂ С‚РµР»РµС„РѕРЅР°";
 	private static final String EMAIL_TEXT = "email";
 	
 	public final Pattern EMAIL_ADDRESS_PATTERN = 
@@ -104,10 +104,10 @@ public class GoRegActivity extends Activity implements OnFocusChangeListener, On
 							// TODO Auto-generated method stub
 							NumberFormat nf = NumberFormat.getInstance(Locale.FRENCH);
 							if(price == 0){
-								priceTextView.setText("Участие - бесплатно.");
+								priceTextView.setText("РЈС‡Р°СЃС‚РёРµ - Р±РµСЃРїР»Р°С‚РЅРѕ.");
 								
 							}else{
-								priceTextView.setText(nf.format(price) + " руб.");
+								priceTextView.setText(nf.format(price) + " СЂСѓР±.");
 							}
 						}
 					});
@@ -149,7 +149,7 @@ public class GoRegActivity extends Activity implements OnFocusChangeListener, On
 		super.onCreate(savedInstanceState);
 		//setContentView(R.layout.event_reg);
 		setContentView(R.layout.registration);
-		ad = getDialog("Ошибка", "Заполнены не все поля");
+		ad = getDialog("РћС€РёР±РєР°", "Р—Р°РїРѕР»РЅРµРЅС‹ РЅРµ РІСЃРµ РїРѕР»СЏ");
 		
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 		
@@ -239,8 +239,8 @@ public class GoRegActivity extends Activity implements OnFocusChangeListener, On
 	
 	private AlertDialog goodDialog() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage("Заявка отправлена.")
-			.setTitle("Спасибо!")
+		builder.setMessage("Р—Р°СЏРІРєР° РѕС‚РїСЂР°РІР»РµРЅР°.")
+			.setTitle("РЎРїР°СЃРёР±Рѕ!")
 			.setCancelable(false)
 			.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
 	           public void onClick(DialogInterface dialog, int id) {
@@ -308,11 +308,11 @@ public class GoRegActivity extends Activity implements OnFocusChangeListener, On
 				if(CheckInput(nameInput, NAME_TEXT) && CheckInput(phoneInput, PHONE_TEXT) && 
 						CheckInput(emailInput, EMAIL_TEXT)){ 
 					if(!checkEmail(emailInput)){
-						AlertDialog alertEmail = getDialog("Ошибка ввода", "Некорректно введен email.");
+						AlertDialog alertEmail = getDialog("РћС€РёР±РєР° РІРІРѕРґР°", "РќРµРєРѕСЂСЂРµРєС‚РЅРѕ РІРІРµРґРµРЅ email.");
 						alertEmail.show();
 						return;
 					}
-					//Заполнены все					
+					//Р—Р°РїРѕР»РЅРµРЅС‹ РІСЃРµ					
 					final List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
 					nameValuePairs.add(new BasicNameValuePair("name", nameInput));
 					nameValuePairs.add(new BasicNameValuePair("phone", phoneInput));
@@ -326,8 +326,8 @@ public class GoRegActivity extends Activity implements OnFocusChangeListener, On
 						public void run() {
 							boolean f = sendData(url, nameValuePairs);
 							if(!f){
-								final AlertDialog alert = getDialog("Ошибка подключения", 
-										"Отсутствует подключение");
+								final AlertDialog alert = getDialog("РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ", 
+										"РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїРѕРґРєР»СЋС‡РµРЅРёРµ");
 								runOnUiThread(new Runnable() {
 									@Override
 									public void run() {
@@ -350,7 +350,7 @@ public class GoRegActivity extends Activity implements OnFocusChangeListener, On
 					calendarThread.start();
 					
 				}else if(CheckInput(nameInput, NAME_TEXT) && CheckInput(phoneInput, PHONE_TEXT)){
-					//Кроме мыла
+					//РљСЂРѕРјРµ РјС‹Р»Р°
 					final List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(5);
 					nameValuePairs.add(new BasicNameValuePair("name", nameInput));
 					nameValuePairs.add(new BasicNameValuePair("phone", phoneInput));
@@ -363,8 +363,8 @@ public class GoRegActivity extends Activity implements OnFocusChangeListener, On
 						public void run() {
 							boolean f = sendData(url, nameValuePairs);
 							if(!f){
-								final AlertDialog alert = getDialog("Ошибка подключения", 
-										"Отсутствует подключение");
+								final AlertDialog alert = getDialog("РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ", 
+										"РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїРѕРґРєР»СЋС‡РµРЅРёРµ");
 								runOnUiThread(new Runnable() {
 									@Override
 									public void run() {
@@ -386,9 +386,9 @@ public class GoRegActivity extends Activity implements OnFocusChangeListener, On
 					sender.start();
 					calendarThread.start();
 				}else if(CheckInput(nameInput, NAME_TEXT) && CheckInput(emailInput, EMAIL_TEXT)){ 
-					//Кроме телефона
+					//РљСЂРѕРјРµ С‚РµР»РµС„РѕРЅР°
 					if(!checkEmail(emailInput)){
-						AlertDialog alertEmail = getDialog("Ошибка ввода", "Некорректно введен email.");
+						AlertDialog alertEmail = getDialog("РћС€РёР±РєР° РІРІРѕРґР°", "РќРµРєРѕСЂСЂРµРєС‚РЅРѕ РІРІРµРґРµРЅ email.");
 						alertEmail.show();
 						return;
 					}
@@ -408,8 +408,8 @@ public class GoRegActivity extends Activity implements OnFocusChangeListener, On
 								runOnUiThread(new Runnable() {
 									@Override
 									public void run() {
-										AlertDialog alert = getDialog("Ошибка подключения", 
-												"Отсутствует подключение");
+										AlertDialog alert = getDialog("РћС€РёР±РєР° РїРѕРґРєР»СЋС‡РµРЅРёСЏ", 
+												"РћС‚СЃСѓС‚СЃС‚РІСѓРµС‚ РїРѕРґРєР»СЋС‡РµРЅРёРµ");
 										alert.show();
 									}
 								});

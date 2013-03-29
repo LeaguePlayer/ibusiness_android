@@ -12,5 +12,26 @@
     <string name="hotels">Гостиницы</string>
     <string name="bankomat">Банкоматы</string>
     <string name="inforeg">После регистрации, вы получите уведомление на свой телефон или по электронной почте</string>
+    <string name="events_tab">События</string>
+    <string name="news_tab">Новости</string>
+    <string name="polez_tab">Полезное</string>
+    <string name="progress_text">Загрузка&#8230;</string>
+    <string name="info_tab">Инфо</string>
+    <string name="speaker_tab">Спикеры</string>
+    <string name="schedule_tab">Расписание</string>
+    <string name="need_net">Необходимо подключение к сети</string>
+    <string name="review_submit">Оценить</string>
+    <string name="review_title">Оцените работу Игоря и Виталия</string>
+   	<string name="interes">Заинтересовало событие?</string>
+   	<string name="ponrav">Понравилось мероприятие?</string>
+   	<string name="reg">Регистрация</string>
+    
+    <string-array name="reviews_marks">
+        <item>Просто ВАУ! Пойду ещё!</item>
+        <item>Улётный день, всё по делу</item>
+        <item>Практично и полезно</item>
+        <item>Не все понравилось</item>
+        <item>Полный отстой</item>
+    </string-array>
 
 </resources>

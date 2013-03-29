@@ -1,49 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:android1="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
     <LinearLayout
-        android1:layout_width="match_parent"
-        android1:layout_height="wrap_content"
-        android1:background="@drawable/bg_title_event" >
-
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_title_event" >
+        
         <TextView
-            android1:id="@+id/title_event"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:layout_gravity="center_vertical"
-            android1:layout_marginLeft="10dp"
-            android1:ellipsize="marquee"
-            android1:lines="1"
-            android1:text="TextView"
-            android1:textColor="@color/white"
-            android1:textSize="12sp" />
+            android:id="@+id/title_event"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="10dp"
+            android:ellipsize="marquee"
+            android:lines="1"
+            android:text="TextView"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
 
     </LinearLayout>
 
     <TabHost
-        android1:id="@android:id/tabhost"
-        android1:layout_width="match_parent"
-        android1:layout_height="match_parent"
-        android1:layout_weight="10" >
+        android:id="@android:id/tabhost"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="10" >
 
         <LinearLayout
-            android1:layout_width="match_parent"
-            android1:layout_height="match_parent"
-            android1:orientation="vertical" >
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
             <TabWidget
-                android1:id="@android:id/tabs"
-                android1:layout_width="match_parent"
-                android1:layout_height="wrap_content" />
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
             <FrameLayout
-                android1:id="@android:id/tabcontent"
-                android1:layout_width="match_parent"
-                android1:layout_height="match_parent" >
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
                 <android.support.v4.view.ViewPager
                     android:id="@+id/pager"
@@ -57,38 +56,38 @@
 
 
     <RelativeLayout
-        android1:id="@+id/plaha_reg"
-        android1:layout_width="fill_parent"
-        android1:layout_height="wrap_content"
-        android1:background="@drawable/bg_plaha_reg" >
-
+        android:id="@+id/plaha_reg"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_plaha_reg" >
+        
         <TextView
-            android1:id="@+id/interes"
+            android:id="@+id/interes"
             style="@style/WhiteShadow"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:layout_alignParentLeft="true"
-            android1:layout_centerHorizontal="true"
-            android1:layout_centerVertical="true"
-            android1:layout_marginLeft="20dp"
-            android1:text="Заинтересовало событие?"
-            android1:textAppearance="@null"
-            android1:textColor="#DC0314"
-            android1:textSize="14sp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:text="@string/interes"
+            android:textAppearance="@null"
+            android:textColor="#DC0314"
+            android:textSize="14sp" />
 
         <Button
-            android1:id="@+id/goreg"
+            android:id="@+id/goreg"
             style="@null"
-            android1:layout_width="wrap_content"
-            android1:layout_height="wrap_content"
-            android1:layout_alignParentRight="true"
-            android1:layout_centerVertical="true"
-            android1:background="@drawable/selector_buton_reg"
-            android1:paddingBottom="5dp"
-            android1:paddingTop="5dp"
-            android1:text="Регистрация"
-            android1:textColor="@android:color/white"
-            android1:textSize="15sp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/selector_buton_reg"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:text="@string/reg"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
     </RelativeLayout>
 
 </LinearLayout>

@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
-import com.emilsjolander.components.stickylistheaders.R;
+import ru.amobile_studio.ibusiness.R;
 import com.emilsjolander.components.stickylistheaders.StickyListHeadersBaseAdapter;
 /**
  *
