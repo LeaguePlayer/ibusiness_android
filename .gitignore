@@ -18,3 +18,16 @@ local.properties
 # Eclipse project files
 .classpath
 .project
+
+# IDEA Ignores
+*.iml
+*.ipr
+*.iws
+.idea/*
+local.properties
+*.properties
+
+# Generic Android ignores
+target
+
+ibusiness.iml

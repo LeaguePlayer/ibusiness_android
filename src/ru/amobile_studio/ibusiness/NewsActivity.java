@@ -157,8 +157,8 @@ public class NewsActivity extends ListActivity {
 		try {
 			String r = jm.getJsonResult();
 			if(r.equals("")){
-				News n = new News("��� �����������", "");
-				ArrayList<News> one = new ArrayList<News>(1);
+				News n = new News("Ничего не найдено", "");
+				ArrayList <News> one = new ArrayList<News>(1);
 				one.add(n);
 				return one;
 			}

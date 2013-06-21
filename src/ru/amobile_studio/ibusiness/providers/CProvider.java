@@ -147,7 +147,7 @@ public class CProvider extends ContentProvider {
 					uri = ContentUris.withAppendedId(CONTENT_URI_SPEAKERS, row_id);
 					getContext().getContentResolver().notifyChange(uri, null);
 				}else{
-					throw new SQLException("Провал вставки " + url);
+					throw new SQLException("РџСЂРѕРІР°Р» РІСЃС‚Р°РІРєРё " + url);
 				}
 				break;
 			}
@@ -158,7 +158,7 @@ public class CProvider extends ContentProvider {
 					uri = ContentUris.withAppendedId(CONTENT_URI_EVENTS, row_id);
 					getContext().getContentResolver().notifyChange(uri, null);
 				}else{
-					throw new SQLException("Провал вставки " + url);
+					throw new SQLException("РџСЂРѕРІР°Р» РІСЃС‚Р°РІРєРё " + url);
 				}
 				break;
 			}
@@ -169,7 +169,7 @@ public class CProvider extends ContentProvider {
 					uri = ContentUris.withAppendedId(CONTENT_URI_PARTNERS, row_id);
 					getContext().getContentResolver().notifyChange(uri, null);
 				}else{
-					throw new SQLException("Провал вставки " + url);
+					throw new SQLException("РџСЂРѕРІР°Р» РІСЃС‚Р°РІРєРё " + url);
 				}
 				break;
 			}
@@ -180,7 +180,7 @@ public class CProvider extends ContentProvider {
 					uri = ContentUris.withAppendedId(CONTENT_URI_SCHEDULE, row_id);
 					getContext().getContentResolver().notifyChange(uri, null);
 				}else{
-					throw new SQLException("Провал вставки " + url);
+					throw new SQLException("РџСЂРѕРІР°Р» РІСЃС‚Р°РІРєРё " + url);
 				}
 				break;
 			}

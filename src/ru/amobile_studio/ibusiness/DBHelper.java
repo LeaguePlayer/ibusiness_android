@@ -19,12 +19,12 @@ public class DBHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 
 		Log.d(LOG_TAG, "--- onCreate databases ---");
-	    // создаем таблицу partners
+	    // СЃРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ partners
 		db.execSQL("CREATE TABLE partners ("
 			  + "_id INTEGER PRIMARY KEY AUTOINCREMENT," 
 	          + "img TEXT,"
 	          + "version INTEGER" + ");");
-		// создаем таблицу events
+		// СЃРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ events
 		db.execSQL("CREATE TABLE events ("
 	          + "_id INTEGER PRIMARY KEY AUTOINCREMENT," 
 	          + "id_type INTEGER,"
@@ -35,7 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	          + "date_finish TEXT,"
 	          + "show INTEGER,"
 	          + "version INTEGER" + ");");
-		// создаем таблицу speakers
+		// СЃРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ speakers
 		db.execSQL("CREATE TABLE speakers ("
 		      + "_id INTEGER PRIMARY KEY AUTOINCREMENT," 
 		      + "id_event INTEGER,"
@@ -46,7 +46,7 @@ public class DBHelper extends SQLiteOpenHelper {
 		      + "img TEXT,"
 		      + "data_sort INTEGER,"
 		      + "version INTEGER" + ");");
-		// создаем таблицу schedule
+		// СЃРѕР·РґР°РµРј С‚Р°Р±Р»РёС†Сѓ schedule
 		db.execSQL("CREATE TABLE schedule ("
 			  + "_id INTEGER PRIMARY KEY AUTOINCREMENT," 
 			  + "id_event INTEGER,"

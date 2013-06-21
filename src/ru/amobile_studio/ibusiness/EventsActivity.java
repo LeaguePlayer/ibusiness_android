@@ -107,6 +107,7 @@ public class EventsActivity extends Activity implements OnClickListener {
 	//Устанавливаем активное лого в первую кнопку
 	private void setEventInfo(Event e, View event){
 		TextView tv = null;
+        boolean setText = true;
 		if(current_butt == 1){
 			switch(e.id_type){
 				case 1:{
@@ -116,7 +117,8 @@ public class EventsActivity extends Activity implements OnClickListener {
 				}
 				case 2:{
 					ImageView iv = (ImageView) event.findViewById(R.id.logo_active);
-					iv.setImageResource(R.drawable.prod_active);
+					iv.setImageResource(R.drawable.max_active);
+                    setText = false;
 					break;
 				}
 				case 3:{
@@ -143,12 +145,14 @@ public class EventsActivity extends Activity implements OnClickListener {
 				case 2:{
 					if(current_butt == 2){
 						ImageView iv = (ImageView) event.findViewById(R.id.logo);
-						iv.setImageResource(R.drawable.prod);
+						iv.setImageResource(R.drawable.max_noactive);
 						tv = (TextView) event.findViewById(R.id.date);
+                        setText = false;
 					}else if(current_butt == 3){
 						ImageView iv = (ImageView) event.findViewById(R.id.logo2);
-						iv.setImageResource(R.drawable.prod);
+						iv.setImageResource(R.drawable.max_noactive);
 						tv = (TextView) event.findViewById(R.id.date2);
+                        setText = false;
 					}
 					break;
 				}
@@ -171,7 +175,14 @@ public class EventsActivity extends Activity implements OnClickListener {
 		try {
 			String date = outFormat.format(inFormat.parse(e.date_start));
 			tv.setTypeface(tf);
-			tv.setText(date);
+            Log.d(SplashActivity.LOG_TAG, "settext = " + setText);
+            if(setText){
+                tv.setText(date);
+            }else{
+                tv.setText("");
+                tv.setVisibility(View.GONE);
+            }
+
 		} catch (ParseException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();

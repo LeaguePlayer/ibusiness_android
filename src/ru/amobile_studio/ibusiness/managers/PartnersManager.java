@@ -20,8 +20,8 @@ import android.util.Log;
 import android.view.WindowManager;
 
 public class PartnersManager {
-	//-----------------------------Для работы с БД---------------------------------
-	//Константы имена полей
+	//-----------------------------Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЃ Р‘Р”---------------------------------
+	//РљРѕРЅСЃС‚Р°РЅС‚С‹ РёРјРµРЅР° РїРѕР»РµР№
 	private final String NAME_ID = "_id";
 	private final String NAME_IMG = "img";
 	private final String NAME_VERS = "version";
@@ -50,9 +50,9 @@ public class PartnersManager {
 			this.img = img;
 		}
 	}
-	//-----------------------------Для работы с БД---------------------------------
+	//-----------------------------Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЃ Р‘Р”---------------------------------
 	
-	//Место на сервере
+	//РњРµСЃС‚Рѕ РЅР° СЃРµСЂРІРµСЂРµ
 	final String LOG_TAG = "myLogs";
 	public final static String URL_IMAGES = SplashActivity.DOMEN + "/uploads/partners/";
 	
@@ -64,7 +64,7 @@ public class PartnersManager {
 	private final ImageLoader il;
 	private final float d;
 	
-	//Конструктор
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	public PartnersManager(Context context){
 		this.contentResolver = context.getContentResolver();
 		this.il = new ImageLoader(context);
@@ -105,7 +105,7 @@ public class PartnersManager {
 	public void loadFromDb(){
 		
 		Cursor c = contentResolver.query(CProvider.CONTENT_URI_PARTNERS, null, null, null, null);
-		//Достаем данные
+		//Р”РѕСЃС‚Р°РµРј РґР°РЅРЅС‹Рµ
 		if(c.getCount() != 0){
 			if(c.moveToFirst()){
 				fromDb = new ArrayList<Partner>(c.getCount());
@@ -132,7 +132,7 @@ public class PartnersManager {
 		String[] hold = new String[fromJson.size()];
 		
 		if(fromJson.size() > 0){
-			if(fromDb.size() > 0){//Если в базе есть чтото
+			if(fromDb.size() > 0){//Р•СЃР»Рё РІ Р±Р°Р·Рµ РµСЃС‚СЊ С‡С‚РѕС‚Рѕ
 			
 				StringBuilder sb  = new StringBuilder();
 				sb.append("?");
@@ -147,11 +147,11 @@ public class PartnersManager {
 						new String[]{"img"}, NAME_ID + " NOT IN (" + sb.toString() + ")", hold, null);
 				DeleteImages(c);
 				c.close();
-				//Удаляем старые
+				//РЈРґР°Р»СЏРµРј СЃС‚Р°СЂС‹Рµ
 				contentResolver.delete(CProvider.CONTENT_URI_PARTNERS, 
 						NAME_ID + " NOT IN (" + sb.toString() + ")", hold);
 				//printDbToLog();				
-			}else if(fromDb.size() == 0){//Если в базе пусто
+			}else if(fromDb.size() == 0){//Р•СЃР»Рё РІ Р±Р°Р·Рµ РїСѓСЃС‚Рѕ
 				for(int i = 0; i < fromJson.size(); i++){
 					Partner tmp = fromJson.get(i);
 					contentResolver.insert(CProvider.CONTENT_URI_PARTNERS, getCv(tmp));
@@ -189,8 +189,8 @@ public class PartnersManager {
 	
 	public String updateVersion(Partner item){
 		int oldVers = getVersionFromDb(item.id);
-		if(oldVers != -1){ //Запись существует
-			if(oldVers < item.version){ //старая запись, обновляем
+		if(oldVers != -1){ //Р—Р°РїРёСЃСЊ СЃСѓС‰РµСЃС‚РІСѓРµС‚
+			if(oldVers < item.version){ //СЃС‚Р°СЂР°СЏ Р·Р°РїРёСЃСЊ, РѕР±РЅРѕРІР»СЏРµРј
 				//Update images<--
 				Cursor c = contentResolver.query(CProvider.CONTENT_URI_PARTNERS, 
 						new String[]{"img"}, NAME_ID + "=?", new String[]{item.id + ""}, null);
@@ -206,7 +206,7 @@ public class PartnersManager {
 				contentResolver.update(CProvider.CONTENT_URI_PARTNERS, getCv(item), NAME_ID + "=?", args);
 				return  item.id + "";
 			}
-		}else{//Запись нет, доабавляем
+		}else{//Р—Р°РїРёСЃСЊ РЅРµС‚, РґРѕР°Р±Р°РІР»СЏРµРј
 			contentResolver.insert(CProvider.CONTENT_URI_PARTNERS, getCv(item));
 			//save image
 			il.saveImageFromUrl(URL_IMAGES + getPrefixDensity(d) + item.img, item.img);

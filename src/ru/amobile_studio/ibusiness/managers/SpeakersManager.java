@@ -18,8 +18,8 @@ import android.util.Log;
 import android.view.WindowManager;
 
 public class SpeakersManager{
-	//-----------------------------Для работы с БД---------------------------------
-	//Константы имена полей
+	//-----------------------------Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЃ Р‘Р”---------------------------------
+	//РљРѕРЅСЃС‚Р°РЅС‚С‹ РёРјРµРЅР° РїРѕР»РµР№
 	public static final String NAME_ID = "_id";
 	public static final String NAME_ID_EVENT = "id_event";
 	public static final String NAME_SPEAKER = "name_speaker";
@@ -30,7 +30,7 @@ public class SpeakersManager{
 	public static final String NAME_SORT = "data_sort";
 	public static final String NAME_VERS = "version";
 	
-	//Сущность событие
+	//РЎСѓС‰РЅРѕСЃС‚СЊ СЃРѕР±С‹С‚РёРµ
 	public class Speaker{
 		public int id;
 		public int id_event;
@@ -56,7 +56,7 @@ public class SpeakersManager{
 		}
 		
 	}
-	//-----------------------------Для работы с БД---------------------------------
+	//-----------------------------Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЃ Р‘Р”---------------------------------
 	
 	final String LOG_TAG = "myLogs";
 	private ArrayList<Speaker> fromJson;
@@ -74,7 +74,7 @@ public class SpeakersManager{
 	
 	private final ContentResolver contentResolver;
 	private final ImageLoader il;
-	//Конструктор
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	public SpeakersManager(Context context){
 		this.context = context;
 		this.contentResolver = context.getContentResolver();
@@ -84,7 +84,7 @@ public class SpeakersManager{
 		this.d = metrics.density;
 	}
 	
-	//Методы
+	//РњРµС‚РѕРґС‹
 	
 	public void loadFromJson() throws InterruptedException, ExecutionException, JSONException{
 		JsonManager jm = new JsonManager(reqAll);
@@ -111,7 +111,7 @@ public class SpeakersManager{
 	
 	public void loadFromDb(){
 		Cursor c = contentResolver.query(CProvider.CONTENT_URI_SPEAKERS, null, null, null, null);
-		//Достаем данные
+		//Р”РѕСЃС‚Р°РµРј РґР°РЅРЅС‹Рµ
 		if(c.getCount() != 0){
 			if(c.moveToFirst()){
 				fromDb = new ArrayList<Speaker>(c.getCount());
@@ -148,7 +148,7 @@ public class SpeakersManager{
 		String[] hold = new String[fromJson.size()];
 		
 		if(fromJson.size() > 0){
-			if(fromDb.size() > 0){//Если в базе есть чтото
+			if(fromDb.size() > 0){//Р•СЃР»Рё РІ Р±Р°Р·Рµ РµСЃС‚СЊ С‡С‚РѕС‚Рѕ
 			
 				StringBuilder sb  = new StringBuilder();
 				sb.append("?");
@@ -163,11 +163,11 @@ public class SpeakersManager{
 						new String[]{"img"}, NAME_ID + " NOT IN (" + sb.toString() + ")", hold, null);
 				DeleteImages(c);
 				c.close();
-				//Удаляем старые
+				//РЈРґР°Р»СЏРµРј СЃС‚Р°СЂС‹Рµ
 				contentResolver.delete(CProvider.CONTENT_URI_SPEAKERS, 
 						NAME_ID + " NOT IN (" + sb.toString() + ")", hold);
 				//printDbToLog();				
-			}else if(fromDb.size() == 0){//Если в базе пусто
+			}else if(fromDb.size() == 0){//Р•СЃР»Рё РІ Р±Р°Р·Рµ РїСѓСЃС‚Рѕ
 				for(int i = 0; i < fromJson.size(); i++){
 					Speaker tmp = fromJson.get(i);
 					contentResolver.insert(CProvider.CONTENT_URI_SPEAKERS, getCv(tmp));
@@ -205,8 +205,8 @@ public class SpeakersManager{
 	
 	public String updateVersion(Speaker item){
 		int oldVers = getVersionFromDb(item.id);
-		if(oldVers != -1){ //Запись существует
-			if(oldVers < item.version){ //старая запись, обновляем
+		if(oldVers != -1){ //Р—Р°РїРёСЃСЊ СЃСѓС‰РµСЃС‚РІСѓРµС‚
+			if(oldVers < item.version){ //СЃС‚Р°СЂР°СЏ Р·Р°РїРёСЃСЊ, РѕР±РЅРѕРІР»СЏРµРј
 				//Update images<--
 				Cursor c = contentResolver.query(CProvider.CONTENT_URI_SPEAKERS, 
 						new String[]{"img"}, NAME_ID + "=?", new String[]{item.id + ""}, null);
@@ -222,7 +222,7 @@ public class SpeakersManager{
 				contentResolver.update(CProvider.CONTENT_URI_SPEAKERS, getCv(item), NAME_ID + "=?", args);
 				return  item.id + "";
 			}
-		}else{//Запись нет, доабавляем
+		}else{//Р—Р°РїРёСЃСЊ РЅРµС‚, РґРѕР°Р±Р°РІР»СЏРµРј
 			contentResolver.insert(CProvider.CONTENT_URI_SPEAKERS, getCv(item));
 			//save image
 			il.saveImageFromUrl(URL_IMAGES + getPrefixDensity(d) + item.img, item.img);

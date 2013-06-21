@@ -208,7 +208,7 @@ public class PoleznoeActivity extends Activity implements OnTouchListener, OnMyL
 	}
 	
 	private void showMessage(){
-		Toast.makeText(getApplicationContext(), "Необходимо подключение к сети.", 
+		Toast.makeText(getApplicationContext(), "РќРµРѕР±С…РѕРґРёРјРѕ РїРѕРґРєР»СЋС‡РµРЅРёРµ Рє СЃРµС‚Рё.", 
 				Toast.LENGTH_LONG).show();
 	}
 	

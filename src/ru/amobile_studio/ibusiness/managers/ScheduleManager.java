@@ -16,8 +16,8 @@ import android.database.Cursor;
 import android.util.Log;
 
 public class ScheduleManager {
-	//-----------------------------Для работы с БД---------------------------------
-	//Константы имена полей
+	//-----------------------------Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЃ Р‘Р”---------------------------------
+	//РљРѕРЅСЃС‚Р°РЅС‚С‹ РёРјРµРЅР° РїРѕР»РµР№
 	public static final String NAME_ID = "_id";
 	public static final String NAME_ID_EVENT = "id_event";
 	public static final String NAME_TITLE = "title";
@@ -30,7 +30,7 @@ public class ScheduleManager {
 	public static final String NAME_SORT = "data_sort";
 	public static final String NAME_VERS = "version";
 	
-	//Сущность событие
+	//РЎСѓС‰РЅРѕСЃС‚СЊ СЃРѕР±С‹С‚РёРµ
 	public class Schedule{
 		public int id;
 		public int id_event;
@@ -61,7 +61,7 @@ public class ScheduleManager {
 		}
 		
 	}
-	//-----------------------------Для работы с БД---------------------------------
+	//-----------------------------Р”Р»СЏ СЂР°Р±РѕС‚С‹ СЃ Р‘Р”---------------------------------
 	
 	final String LOG_TAG = "myLogs";
 	private ArrayList<Schedule> fromJson;
@@ -70,12 +70,12 @@ public class ScheduleManager {
 	private String reqAll = SplashActivity.DOMEN + "/schedule/getjson/all"; //API request
 	private final ContentResolver contentResolver;
 	
-	//Конструктор
+	//РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
 	public ScheduleManager(Context context){
 		this.contentResolver = context.getContentResolver();
 	}
 	
-	//Методы
+	//РњРµС‚РѕРґС‹
 	
 	public void loadFromJson() throws InterruptedException, ExecutionException, JSONException{
 		JsonManager jm = new JsonManager(reqAll);
@@ -103,7 +103,7 @@ public class ScheduleManager {
 	public void loadFromDb(){
 		
 		Cursor c = contentResolver.query(CProvider.CONTENT_URI_SCHEDULE, null, null, null, null);
-		//Достаем данные
+		//Р”РѕСЃС‚Р°РµРј РґР°РЅРЅС‹Рµ
 		if(c.getCount() != 0){
 			if(c.moveToFirst()){
 				fromDb = new ArrayList<Schedule>(c.getCount());
@@ -138,7 +138,7 @@ public class ScheduleManager {
 		String[] hold = new String[fromJson.size()];
 		
 		if(fromJson.size() > 0){
-			if(fromDb.size() > 0){//Если в базе есть чтото
+			if(fromDb.size() > 0){//Р•СЃР»Рё РІ Р±Р°Р·Рµ РµСЃС‚СЊ С‡С‚РѕС‚Рѕ
 				StringBuilder sb  = new StringBuilder();
 				sb.append("?");
 				hold[0] = updateVersion(fromJson.get(0));
@@ -147,11 +147,11 @@ public class ScheduleManager {
 					hold[i] = updateVersion(fromJson.get(i));
 					sb.append(",").append("?");
 				}
-				//Удаляем старые
+				//РЈРґР°Р»СЏРµРј СЃС‚Р°СЂС‹Рµ
 				contentResolver.delete(CProvider.CONTENT_URI_SCHEDULE, 
 						NAME_ID + " NOT IN (" + sb.toString() + ")", hold);
 				//printDbToLog();				
-			}else if(fromDb.size() == 0){//Если в базе пусто
+			}else if(fromDb.size() == 0){//Р•СЃР»Рё РІ Р±Р°Р·Рµ РїСѓСЃС‚Рѕ
 				for(int i = 0; i < fromJson.size(); i++){
 					Schedule tmp = fromJson.get(i);
 					contentResolver.insert(CProvider.CONTENT_URI_SCHEDULE, getCv(tmp));
@@ -162,13 +162,13 @@ public class ScheduleManager {
 	
 	public String updateVersion(Schedule item){
 		int oldVers = getVersionFromDb(item.id);
-		if(oldVers != -1){ //Запись существует
-			if(oldVers < item.version){ //старая запись, обновляем
+		if(oldVers != -1){ //Р—Р°РїРёСЃСЊ СЃСѓС‰РµСЃС‚РІСѓРµС‚
+			if(oldVers < item.version){ //СЃС‚Р°СЂР°СЏ Р·Р°РїРёСЃСЊ, РѕР±РЅРѕРІР»СЏРµРј
 				String[] args = {item.id + ""};
 				contentResolver.update(CProvider.CONTENT_URI_SCHEDULE, getCv(item), NAME_ID + "=?", args);
 				return  item.id + "";
 			}
-		}else{//Запись нет, доабавляем
+		}else{//Р—Р°РїРёСЃСЊ РЅРµС‚, РґРѕР°Р±Р°РІР»СЏРµРј
 			contentResolver.insert(CProvider.CONTENT_URI_SCHEDULE, getCv(item));
 		}
 		return item.id + "";

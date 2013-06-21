@@ -16,8 +16,6 @@ import android.database.Cursor;
 import android.util.Log;
 
 public class EventManager {
-	//-----------------------------Для работы с БД---------------------------------
-	//Константы имена полей
 	public static final String NAME_ID = "_id";
 	public static final String NAME_ID_TYPE = "id_type";
 	public static final String NAME_TITLE = "title";
@@ -27,8 +25,7 @@ public class EventManager {
 	public static final String NAME_DATE_F = "date_finish";
 	public static final String NAME_SHOW = "show";
 	public static final String NAME_VERS = "version";
-	
-	//Сущность событие
+
 	public class Event{
 		public int id;
 		public int id_type;
@@ -54,7 +51,7 @@ public class EventManager {
 		}
 		
 	}
-	//-----------------------------Для работы с БД---------------------------------
+	//-----------------------------пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅ---------------------------------
 	
 	final String LOG_TAG = "myLogs";
 	private ArrayList<Event> fromJson;
@@ -63,12 +60,12 @@ public class EventManager {
 	private final ContentResolver contentResolver;
 	private String reqAll = SplashActivity.DOMEN + "/events/getjson/all"; //API request
 	
-	//Конструктор
+	//пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	public EventManager(Context context){
 		this.contentResolver = context.getContentResolver();
 	}
 	
-	//Методы
+	//пїЅпїЅпїЅпїЅпїЅпїЅ
 	
 	public ArrayList<Event> getDataJson(){
 		return fromJson;
@@ -102,7 +99,7 @@ public class EventManager {
 	
 	public void loadFromDb(){
 		Cursor c = contentResolver.query(CProvider.CONTENT_URI_EVENTS, null, null, null, null);
-		//Достаем данные
+		//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 		if(c.getCount() != 0){
 			if(c.moveToFirst()){
 				fromDb = new ArrayList<Event>(c.getCount());
@@ -166,7 +163,7 @@ public class EventManager {
 		String[] hold = new String[fromJson.size()];
 		
 		if(fromJson.size() > 0){
-			if(fromDb.size() > 0){//Если в базе есть чтото
+			if(fromDb.size() > 0){//пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 			
 				StringBuilder sb  = new StringBuilder();
 				sb.append("?");
@@ -176,10 +173,10 @@ public class EventManager {
 					hold[i] = updateVersion(fromJson.get(i));
 					sb.append(",").append("?");
 				}
-				//Удаляем старые
+				//пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 				contentResolver.delete(CProvider.CONTENT_URI_EVENTS, 
 						NAME_ID + " NOT IN (" + sb.toString() + ")", hold);				
-			}else if(fromDb.size() == 0){//Если в базе пусто
+			}else if(fromDb.size() == 0){//пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 				for(int i = 0; i < fromJson.size(); i++){
 					Event tmp = fromJson.get(i);
 					contentResolver.insert(CProvider.CONTENT_URI_EVENTS, getCv(tmp));
@@ -190,13 +187,13 @@ public class EventManager {
 	
 	public String updateVersion(Event item){
 		int oldVers = getVersionFromDb(item.id);
-		if(oldVers != -1){ //Запись существует
-			if(oldVers < item.version){ //старая запись, обновляем
+		if(oldVers != -1){ //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			if(oldVers < item.version){ //пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 				String[] args = {item.id + ""};
 				contentResolver.update(CProvider.CONTENT_URI_EVENTS, getCv(item), NAME_ID + "=?", args);
 				return  item.id + "";
 			}
-		}else{//Запись нет, доабавляем
+		}else{//пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			contentResolver.insert(CProvider.CONTENT_URI_EVENTS, getCv(item));
 		}
 		return item.id + "";

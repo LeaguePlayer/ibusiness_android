@@ -31,7 +31,7 @@ public class NewsItemActivity extends Activity {
 		//web.getSettings().setUseWideViewPort(true);
 		//web.getSettings().setSupportZoom(true);
 		
-		//исправляем url
+		//РёСЃРїСЂР°РІР»СЏРµРј url
 		String res = url.replace("http://", "");
 		String good = res.replace("//", "/");
 		Log.d(SplashActivity.LOG_TAG, res);

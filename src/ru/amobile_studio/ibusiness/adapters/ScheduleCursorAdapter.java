@@ -4,7 +4,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.util.Log;
 import ru.amobile_studio.ibusiness.R;
+import ru.amobile_studio.ibusiness.SplashActivity;
 import ru.amobile_studio.ibusiness.managers.ScheduleManager;
 import android.content.Context;
 import android.database.Cursor;
@@ -24,8 +26,11 @@ public class ScheduleCursorAdapter extends StickyListHeadersCursorAdapter {
 	private final static SimpleDateFormat inDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	private final static SimpleDateFormat outDateFormat = new SimpleDateFormat("EEEE dd MMMM");
 
-	private final static SimpleDateFormat inFormat = new SimpleDateFormat("H:m:s");
-	private final static SimpleDateFormat outFormat = new SimpleDateFormat("H:mm");
+	private final static SimpleDateFormat inFormat = new SimpleDateFormat("HH:mm:ss");
+	private final static SimpleDateFormat outFormat = new SimpleDateFormat("HH:mm");
+
+    private final static SimpleDateFormat inDateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private final static SimpleDateFormat outDateFormat2 = new SimpleDateFormat("HH:mm");
 	
 	private Typeface tf;
 
@@ -87,16 +92,14 @@ public class ScheduleCursorAdapter extends StickyListHeadersCursorAdapter {
 
 		String timeStart = "", timeFinish = "";
 		try {
-			timeStart = outFormat.format(inFormat.parse(
-					c.getString(c.getColumnIndex(ScheduleManager.NAME_TIME_BEGIN))));
-			timeFinish = outFormat.format(inFormat.parse(
-					c.getString(c.getColumnIndex(ScheduleManager.NAME_TIME_FINISH))));
+			timeStart = outDateFormat2.format(inDateFormat2.parse(c.getString(c.getColumnIndex(ScheduleManager.NAME_AT_DAY)) + " "+ c.getString(c.getColumnIndex(ScheduleManager.NAME_TIME_BEGIN))));
+			timeFinish = outDateFormat2.format(inDateFormat2.parse(c.getString(c.getColumnIndex(ScheduleManager.NAME_AT_DAY)) + " "+ c.getString(c.getColumnIndex(ScheduleManager.NAME_TIME_FINISH))));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		if(c.getInt(c.getColumnIndex(ScheduleManager.NAME_COFFEE)) == 1){
+
+        if(c.getInt(c.getColumnIndex(ScheduleManager.NAME_COFFEE)) == 1){
 			((ViewHolder)view.getTag()).time.setText(timeStart + " - " + timeFinish);
 			((ViewHolder)view.getTag()).title.setText(c.getString(c.getColumnIndex(ScheduleManager.NAME_TITLE)));
 			((ViewHolder)view.getTag()).coffee.setVisibility(View.VISIBLE);
